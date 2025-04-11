@@ -1,0 +1,160 @@
+# Install script for directory: /home/leon/dbug/mysql-server-mysql-5.7.32
+
+# Set the install prefix
+if(NOT DEFINED CMAKE_INSTALL_PREFIX)
+  set(CMAKE_INSTALL_PREFIX "/usr/local/mysql5")
+endif()
+string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
+
+# Set the install configuration name.
+if(NOT DEFINED CMAKE_INSTALL_CONFIG_NAME)
+  if(BUILD_TYPE)
+    string(REGEX REPLACE "^[^A-Za-z0-9_]+" ""
+           CMAKE_INSTALL_CONFIG_NAME "${BUILD_TYPE}")
+  else()
+    set(CMAKE_INSTALL_CONFIG_NAME "Debug")
+  endif()
+  message(STATUS "Install configuration: \"${CMAKE_INSTALL_CONFIG_NAME}\"")
+endif()
+
+# Set the component getting installed.
+if(NOT CMAKE_INSTALL_COMPONENT)
+  if(COMPONENT)
+    message(STATUS "Install component: \"${COMPONENT}\"")
+    set(CMAKE_INSTALL_COMPONENT "${COMPONENT}")
+  else()
+    set(CMAKE_INSTALL_COMPONENT)
+  endif()
+endif()
+
+# Install shared libraries without execute permission?
+if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
+  set(CMAKE_INSTALL_SO_NO_EXE "0")
+endif()
+
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
+endif()
+
+# Set path to fallback-tool for dependency-resolution.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Info" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/docs" TYPE FILE OPTIONAL FILES "/home/leon/dbug/mysql-server-mysql-5.7.32/Docs/mysql.info")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Readme" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE FILE FILES
+    "/home/leon/dbug/mysql-server-mysql-5.7.32/README"
+    "/home/leon/dbug/mysql-server-mysql-5.7.32/LICENSE"
+    )
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/docs" TYPE FILE FILES
+    "/home/leon/dbug/mysql-server-mysql-5.7.32/Docs/INFO_SRC"
+    "/home/leon/dbug/mysql-server-mysql-5.7.32/Docs/INFO_BIN"
+    )
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Documentation" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/docs" TYPE DIRECTORY FILES "/home/leon/dbug/mysql-server-mysql-5.7.32/Docs/" REGEX "/Makefile\\.[^/]*$" EXCLUDE REGEX "/glibc[^/]*$" EXCLUDE REGEX "/linuxthreads\\.txt$" EXCLUDE REGEX "/myisam\\.txt$" EXCLUDE REGEX "/mysql\\.info$" EXCLUDE REGEX "/sp\\-imp\\-spec\\.txt$" EXCLUDE)
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/zlib/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/cmd-line-utils/libedit/libedit-20190324-3.1/src/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/extra/libevent/libevent-2.1.11-stable/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/extra/protobuf/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/include/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/dbug/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/strings/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/vio/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/regex/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/mysys/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/mysys_ssl/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/libmysql/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/libbinlogevents/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/libbinlogstandalone/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/storage/archive/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/storage/blackhole/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/storage/csv/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/storage/example/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/storage/federated/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/storage/heap/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/storage/innobase/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/storage/myisam/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/storage/myisammrg/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/storage/ndb/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/storage/partition/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/storage/perfschema/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/audit_null/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/auth/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/connection_control/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/daemon_example/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/fulltext/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/innodb_memcached/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/keyring/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/password_validation/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/replication_observers_example/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/rewrite_example/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/rewriter/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/semisync/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/test_service_sql_api/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/test_services/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/udf_services/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/plugin/version_token/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/rapid/plugin/group_replication/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/rapid/plugin/keyring_udf/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/rapid/plugin/x/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/unittest/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/unittest/examples/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/unittest/mytap/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/unittest/mytap/t/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/rapid/unittest/gunit/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/extra/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/client/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/sql/share/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/libservices/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/man/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/testclients/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/sql/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/libmysqld/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/libmysqld/examples/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/scripts/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/mysql-test/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/mysql-test/lib/My/SafeProcess/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/support-files/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/packaging/rpm-common/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/packaging/rpm-oel/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/packaging/rpm-fedora/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/packaging/rpm-sles/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/packaging/rpm-docker/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/packaging/deb-in/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/packaging/WiX/cmake_install.cmake")
+  include("/home/leon/dbug/mysql-server-mysql-5.7.32/packaging/solaris/cmake_install.cmake")
+
+endif()
+
+if(CMAKE_INSTALL_COMPONENT)
+  if(CMAKE_INSTALL_COMPONENT MATCHES "^[a-zA-Z0-9_.+-]+$")
+    set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
+  else()
+    string(MD5 CMAKE_INST_COMP_HASH "${CMAKE_INSTALL_COMPONENT}")
+    set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INST_COMP_HASH}.txt")
+    unset(CMAKE_INST_COMP_HASH)
+  endif()
+else()
+  set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
+       "${CMAKE_INSTALL_MANIFEST_FILES}")
+  file(WRITE "/home/leon/dbug/mysql-server-mysql-5.7.32/${CMAKE_INSTALL_MANIFEST}"
+     "${CMAKE_INSTALL_MANIFEST_CONTENT}")
+endif()

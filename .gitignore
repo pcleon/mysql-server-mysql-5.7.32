@@ -1,0 +1,8 @@
+/cmake-build-debug/
+/extra/
+/zlib/
+/boost/
+/CMakeFiles/
+/build/
+/mysql-test/
+/.vscode copy/

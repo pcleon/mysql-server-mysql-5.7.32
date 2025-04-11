@@ -1,0 +1,40 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) mysql",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/leon/dbug/mysql-server-mysql-5.7.32/cmake-build-debug/build/client/mysql",
+            "args": [
+                "--help"
+                ],
+            "stopAtEntry": false,
+            "cwd": "/data/3306/mysql5",
+            // "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+        },
+        {
+            "name": "(gdb) mysqld",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/leon/dbug/mysql-server-mysql-5.7.32/cmake-build-debug/build/sql/mysqld",
+            "args": [
+                "--defaults-file=/data2/3306/mysql5/etc/my.cnf",
+                "--user=leon"
+                ],
+            "stopAtEntry": false,
+            "cwd": "/data/3306/mysql5",
+            // "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+        }
+
+    ]
+}

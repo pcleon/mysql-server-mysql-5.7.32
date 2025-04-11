@@ -1,0 +1,1 @@
+cd /home/leon/dbug/mysql-server-mysql-5.7.32 && '/usr/bin/cpack' -G TGZ --config CPackConfig.cmake
