@@ -6641,6 +6641,13 @@ int MYSQL_BIN_LOG::purge_index_entry(THD *thd, ulonglong *decrease_log_space,
         }
 
         DBUG_PRINT("info",("purging %s",log_info.log_file_name));
+        // Add sleep before deleting the file
+        my_sleep(1000000); // Sleep for 1 second
+        time_t now = time(NULL);
+        struct tm *tm_info = localtime(&now);
+        char time_buffer[26];
+        strftime(time_buffer, 26, "%Y-%m-%d %H:%M:%S", tm_info);
+        sql_print_information("Current time is %s, will delete binlog %s", time_buffer, log_info.log_file_name);
         if (!mysql_file_delete(key_file_binlog, log_info.log_file_name, MYF(0)))
         {
           DBUG_EXECUTE_IF("wait_in_purge_index_entry",

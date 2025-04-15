@@ -24,6 +24,6 @@
         "cstdlib": "cpp",
         "*.ipp": "cpp"
     },
-    "commentTranslate.source": "intellsmi.deepl-translate-deepl",
+    "commentTranslate.source": "DarkCWK.youdao-youdao",
  
 }
