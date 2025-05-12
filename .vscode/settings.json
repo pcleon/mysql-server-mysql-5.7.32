@@ -22,7 +22,8 @@
     "files.associations": {
         "*.py ": "python",
         "cstdlib": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "*.ic": "cpp"
     },
     "commentTranslate.source": "DarkCWK.youdao-youdao",
  

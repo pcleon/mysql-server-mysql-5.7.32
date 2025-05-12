@@ -6,3 +6,6 @@
 /build/
 /mysql-test/
 /.vscode copy/
+/.vscode/
+/.VSCodeCounter/
+.gitignore

@@ -1467,6 +1467,42 @@ bool dispatch_command(THD *thd, const COM_DATA *com_data,
     if (alloc_query(thd, com_data->com_query.query,
                     com_data->com_query.length))
       break;					// fatal error is set
+      // 在这里添加我们的代码，为每个SQL语句添加用户和IP信息的注释
+  // Get user and IP information
+  const char *username = thd->security_context()->user().str;
+  const char *host_or_ip = thd->security_context()->host_or_ip().str;
+  
+  if (username && host_or_ip) {
+    // Format: /* USER: username, IP: host_or_ip */ original_query
+    char comment_format[] = "/* USER: %s, IP: %s */ ";
+    
+    // Calculate comment length
+    size_t comment_length = snprintf(NULL, 0, comment_format, username, host_or_ip);
+    
+    // Get original query info
+    const char *original_query = thd->query().str;
+    size_t original_length = thd->query().length;
+    
+    // Allocate memory for new query with comment
+    char *new_query = (char *)my_malloc(PSI_NOT_INSTRUMENTED, 
+                                       original_length + comment_length + 1, 
+                                       MYF(MY_WME));
+    
+    if (new_query) {
+      // Create the comment part
+      snprintf(new_query, comment_length + 1, comment_format, username, host_or_ip);
+      
+      // Append the original query
+      memcpy(new_query + comment_length, original_query, original_length);
+      new_query[comment_length + original_length] = '\0';
+      
+      // Replace the original query with our modified version
+      thd->set_query(new_query, comment_length + original_length);
+      
+      // Free the allocated memory (set_query makes a copy)
+      my_free(new_query);
+    }
+  }
     MYSQL_QUERY_START(const_cast<char*>(thd->query().str), thd->thread_id(),
                       (char *) (thd->db().str ? thd->db().str : ""),
                       (char *) thd->security_context()->priv_user().str,
