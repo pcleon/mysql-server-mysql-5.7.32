@@ -1052,6 +1052,7 @@ bool my_yyoverflow(short **a, YYSTYPE **b, YYLTYPE **c, ulong *yystacksize);
 %token  TABLE_SYM                     /* SQL-2003-R */
 %token  TABLE_CHECKSUM_SYM
 %token  TABLE_NAME_SYM                /* SQL-2003-N */
+%token  TABLE_STATS_SYM
 %token  TEMPORARY                     /* SQL-2003-N */
 %token  TEMPTABLE_SYM
 %token  TERMINATED
@@ -11829,6 +11830,15 @@ show_param:
              LEX *lex= Lex;
              lex->sql_command= SQLCOM_SHOW_DATABASES;
              if (prepare_schema_table(YYTHD, lex, 0, SCH_SCHEMATA))
+               MYSQL_YYABORT;
+           }
+         | opt_full TABLE_STATS_SYM opt_db opt_wild_or_where
+           {
+             LEX *lex= Lex;
+             lex->sql_command= SQLCOM_SHOW_TABLES;
+            //  lex->sql_command= SQLCOM_SHOW_TABLE_STATS;
+             lex->select_lex->db= $3;
+             if (prepare_schema_table(YYTHD, lex, 0, SCH_TABLE_NAMES))
                MYSQL_YYABORT;
            }
          | opt_full TABLES opt_db opt_wild_or_where
