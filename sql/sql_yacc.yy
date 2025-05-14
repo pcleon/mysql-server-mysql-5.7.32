@@ -486,6 +486,7 @@ bool my_yyoverflow(short **a, YYSTYPE **b, YYLTYPE **c, ulong *yystacksize);
 */
 
 %token  ABORT_SYM                     /* INTERNAL (used in lex) */
+%token  ACCESS_SYM
 %token  ACCESSIBLE_SYM
 %token  ACCOUNT_SYM
 %token  ACTION                        /* SQL-2003-N */
@@ -11866,6 +11867,14 @@ show_param:
                MYSQL_YYABORT;
            }
          | TABLE_SYM STATUS_SYM opt_db opt_wild_or_where
+           {
+             LEX *lex= Lex;
+             lex->sql_command= SQLCOM_SHOW_TABLE_STATUS;
+             lex->select_lex->db= $3;
+             if (prepare_schema_table(YYTHD, lex, 0, SCH_TABLES))
+               MYSQL_YYABORT;
+           }
+         | TABLE_SYM ACCESS_SYM opt_db opt_wild_or_where
            {
              LEX *lex= Lex;
              lex->sql_command= SQLCOM_SHOW_TABLE_STATUS;
