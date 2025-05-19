@@ -43,6 +43,9 @@
 #include <algorithm>
 #include <string.h>
 
+// Declare a global variable for the login log file path
+const char *opt_login_log = NULL;
+
 #ifdef HAVE_ARPA_INET_H
 #include <arpa/inet.h>
 #endif
@@ -755,6 +758,40 @@ static bool login_connection(THD *thd)
       my_sleep(1000);       /* must wait after eof() */
 #endif
     DBUG_RETURN(1);
+  }
+  // 在这里添加记录用户名,IP和时间的日志
+  {
+    Security_context *sctx = thd->security_context();
+    LEX_CSTRING user = sctx->user();
+    LEX_CSTRING ip = thd->m_main_security_ctx.ip();
+    time_t now = time(NULL);
+    char time_buf[32];
+    strftime(time_buf, sizeof(time_buf), "%Y-%m-%d %H:%M:%S", localtime(&now));
+    sql_print_information("User login: user='%s', ip='%s', time='%s'",
+                          user.str ? user.str : "unknown",
+                          ip.str ? ip.str : "unknown",
+                          time_buf);
+
+    // Write to /tmp/login.log
+    FILE *fp = fopen("/tmp/login.log", "a");
+    if (fp) {
+      fprintf(fp, "User login: user='%s', ip='%s', time='%s'\n",
+              user.str ? user.str : "unknown",
+              ip.str ? ip.str : "unknown",
+              time_buf);
+      fclose(fp);
+    }
+
+    // Write to login log file
+    const char *logfile = opt_login_log ? opt_login_log : "/tmp/login.log";
+    FILE *fp = fopen(logfile, "a");
+    if (fp) {
+      fprintf(fp, "User login: user='%s', ip='%s', time='%s'\n",
+              user.str ? user.str : "unknown",
+              ip.str ? ip.str : "unknown",
+              time_buf);
+      fclose(fp);
+    }
   }
   /* Connect completed, set read/write timeouts back to default */
   thd->get_protocol_classic()->set_read_timeout(
