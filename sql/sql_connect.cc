@@ -772,16 +772,6 @@ static bool login_connection(THD *thd)
                           ip.str ? ip.str : "unknown",
                           time_buf);
 
-    // Write to /tmp/login.log
-    FILE *fp = fopen("/tmp/login.log", "a");
-    if (fp) {
-      fprintf(fp, "User login: user='%s', ip='%s', time='%s'\n",
-              user.str ? user.str : "unknown",
-              ip.str ? ip.str : "unknown",
-              time_buf);
-      fclose(fp);
-    }
-
     // Write to login log file
     const char *logfile = opt_login_log ? opt_login_log : "/tmp/login.log";
     FILE *fp = fopen(logfile, "a");
