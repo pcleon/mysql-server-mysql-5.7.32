@@ -159,6 +159,7 @@ extern my_bool super_read_only, opt_super_readonly;
 extern my_bool lower_case_file_system;
 extern ulonglong slave_rows_search_algorithms_options;
 extern my_bool opt_require_secure_transport;
+extern ulong opt_custom_buffer_size;
 
 #ifdef HAVE_REPLICATION
 extern my_bool opt_slave_preserve_commit_order;
@@ -894,6 +895,7 @@ enum options_mysqld
   OPT_LC_MESSAGES_DIRECTORY,
   OPT_LOWER_CASE_TABLE_NAMES,
   OPT_MASTER_RETRY_COUNT,
+  OPT_CUSTOM_BUFFER_SIZE,
   OPT_MASTER_VERIFY_CHECKSUM,
   OPT_POOL_OF_THREADS,
   OPT_REPLICATE_DO_DB,

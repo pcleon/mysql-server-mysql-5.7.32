@@ -324,6 +324,8 @@ my_bool locked_in_memory;
 bool opt_using_transactions;
 bool volatile abort_loop;
 ulong opt_tc_log_size;
+ulong opt_custom_buffer_size= 8192;
+
 
 static enum_server_operational_state server_operational_state= SERVER_BOOTING;
 ulong log_warnings;
@@ -5857,6 +5859,10 @@ struct my_option my_long_options[]=
    REQUIRED_ARG, TC_LOG_MIN_PAGES * my_getpagesize(),
    TC_LOG_MIN_PAGES * my_getpagesize(), ULONG_MAX, 0,
    my_getpagesize(), 0},
+  {"custom-buffer-size", OPT_CUSTOM_BUFFER_SIZE,
+  "Size of custom buffer in bytes",
+  &opt_custom_buffer_size, &opt_custom_buffer_size, 0, GET_ULONG, REQUIRED_ARG,
+  8192, 1024, ULONG_MAX, 0, 1024, 0},
   {"master-info-file", 0,
    "The location and name of the file that remembers the master and where "
    "the I/O replication thread is in the master's binlogs.",

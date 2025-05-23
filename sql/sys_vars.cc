@@ -163,6 +163,16 @@ static bool update_keycache_param(THD *thd, KEY_CACHE *key_cache,
   NO_MUTEX_GUARD, NOT_IN_BINLOG, ON_CHECK(NULL), ON_UPDATE(NULL), \
   NULL, sys_var::PARSE_EARLY
 
+static Sys_var_ulong Sys_custom_buffer_size(
+  "custom_buffer_size",
+  "Size of custom buffer in bytes",
+  GLOBAL_VAR(opt_custom_buffer_size),
+  CMD_LINE(REQUIRED_ARG),
+  VALID_RANGE(1024, ULONG_MAX),
+  DEFAULT(8192),
+  BLOCK_SIZE(1024)
+);
+
 static Sys_var_mybool Sys_pfs_enabled(
        "performance_schema",
        "Enable the performance schema.",
