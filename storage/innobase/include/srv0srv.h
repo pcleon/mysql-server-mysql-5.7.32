@@ -231,6 +231,8 @@ extern ulong	srv_sort_buf_size;
 /** Maximum modification log file size for online index creation */
 extern unsigned long long	srv_online_max_size;
 
+extern ulint srv_long_trx_threshold;
+
 /* If this flag is TRUE, then we will use the native aio of the
 OS (provided we compiled Innobase with it in), otherwise we will
 use simulated aio we build below with threads.

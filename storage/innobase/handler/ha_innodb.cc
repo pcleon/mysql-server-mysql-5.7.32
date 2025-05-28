@@ -19417,6 +19417,11 @@ static MYSQL_SYSVAR_ULONG(io_capacity_max, srv_max_io_capacity,
   SRV_MAX_IO_CAPACITY_DUMMY_DEFAULT, 100,
   SRV_MAX_IO_CAPACITY_LIMIT, 0);
 
+static MYSQL_SYSVAR_ULONG(long_trx_threshold, srv_long_trx_threshold,
+  PLUGIN_VAR_RQCMDARG,
+  "Threshold in seconds to identify long running transactions",
+  NULL, NULL, 60, 0, UINT_MAX32, 0);
+
 #ifdef UNIV_DEBUG
 static MYSQL_SYSVAR_BOOL(background_drop_list_empty,
   innodb_background_drop_list_empty,
@@ -20303,6 +20308,7 @@ static MYSQL_SYSVAR_BOOL(sync_debug, srv_sync_debug,
 #endif /* UNIV_DEBUG */
 
 static struct st_mysql_sys_var* innobase_system_variables[]= {
+  MYSQL_SYSVAR(long_trx_threshold),
   MYSQL_SYSVAR(api_trx_level),
   MYSQL_SYSVAR(api_bk_commit_interval),
   MYSQL_SYSVAR(autoextend_increment),
