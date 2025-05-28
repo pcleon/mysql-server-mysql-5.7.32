@@ -579,6 +579,15 @@ static ST_FIELD_INFO	innodb_trx_fields_info[] =
 	 STRUCT_FLD(old_name,		""),
 	 STRUCT_FLD(open_method,	SKIP_OPEN_TABLE)},
 
+#define IDX_TRX_ACTIVE_SECONDS	24
+	{STRUCT_FLD(field_name,		"trx_active_seconds"),
+	 STRUCT_FLD(field_length,	MY_INT64_NUM_DECIMAL_DIGITS),
+	 STRUCT_FLD(field_type,		MYSQL_TYPE_LONGLONG),
+	 STRUCT_FLD(value,		0),
+	 STRUCT_FLD(field_flags,	MY_I_S_UNSIGNED),
+	 STRUCT_FLD(old_name,		""),
+	 STRUCT_FLD(open_method,	SKIP_OPEN_TABLE)},
+
 	END_OF_ST_FIELD_INFO
 };
 
@@ -729,6 +738,16 @@ fill_innodb_trx_from_cache(
 		OK(fields[IDX_TRX_AUTOCOMMIT_NON_LOCKING]->store(
 			   (longlong) row->trx_is_autocommit_non_locking,
 			   true));
+
+		// 添加trx_active_seconds字段的填充
+		if (row->trx_started != 0) {
+            ib_time_t current_time = time(NULL);
+            ulonglong active_seconds = (ulonglong)(current_time - row->trx_started);
+			OK(fields[IDX_TRX_ACTIVE_SECONDS]->store(
+			   (longlong) active_seconds, true));
+        } else {
+			fields[IDX_TRX_ACTIVE_SECONDS]->set_null();
+		}
 
 		OK(schema_table_store_record(thd, table));
 	}
